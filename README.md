@@ -3,12 +3,14 @@
 ## Task
 
 Test task for Server Engineer
-Design and implement “Word of Wisdom” tcp server.
- • TCP server should be protected from DDOS attacks with the Proof of Work (https://en.wikipedia.org/wiki/Proof_of_work), the challenge-response protocol should be used.
- • The choice of the POW algorithm should be explained.
- • After Proof Of Work verification, server should send one of the quotes from “word of wisdom” book or any other collection of the quotes.
- • Docker file should be provided both for the server and for the client that solves the POW challenge
- • No restrictions on tools usage
+
+Design and implement “Word of Wisdom” TCP server.
+
+- TCP server should be protected from DDOS attacks with the [Proof of Work](https://en.wikipedia.org/wiki/Proof_of_work), the challenge-response protocol should be used.
+- The choice of the POW algorithm should be explained.
+- After Proof Of Work verification, server should send one of the quotes from “word of wisdom” book or any other collection of the quotes.
+- Docker file should be provided both for the server and for the client that solves the POW challenge.
+- No restrictions on tools usage.
 
 ---
 
@@ -88,24 +90,13 @@ docker logs pow-wow_server_1 -f
 - **Why Argon2id?**
   - Memory-hard, modern, and secure.
   - Resistant to specialized hardware attacks.
-- **Parameters** (tunable):
+- **Parameters** (default):
   - Time: 2
   - Memory: 64 MB
   - Parallelism: 2
   - Key length: 32 bytes
 - **Calculation:**
   - Find a nonce such that `Argon2id(salt|nonce)` has at least `difficulty` leading zero bits.
-
----
-
-## Benchmarks (example, tune for your hardware)
-
-| difficulty | average time     | memory usage |
-|------------|------------------|-------------|
-| 5          | 1ms              | 64MB        |
-| 10         | 10ms             | 64MB        |
-| 15         | 100ms            | 64MB        |
-| 20         | 1s               | 64MB        |
 
 ---
 
