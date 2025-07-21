@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+  server:
+    build:
+      dockerfile: deploy/server.Dockerfile
+      context: .
+    restart: always
+    environment:
+      - LISTEN_ADDR=${LISTEN_ADDR:-0.0.0.0:9000}
+      - DIFFICULTY=${DIFFICULTY:-23}
+      - PROOF_TOKEN_SIZE=${PROOF_TOKEN_SIZE:-64}
+    ports:
+      - "9000:9000"
+      - "8080:8080"
+    # Add more ports if you expose HTTP/3/QUIC
+
+  client:
+    build:
+      dockerfile: deploy/client.Dockerfile
+      context: .
+    restart: always
+    depends_on:
+      - server
+    links:
+      - server
+    environment:
+      - SERVER_ADDR=${SERVER_ADDR:-server:9000}
+      - FETCH_WORKERS=${FETCH_WORKERS:-4}
+      - TIMEOUT=${TIMEOUT:-1000}
+    # Add more client env vars if needed
