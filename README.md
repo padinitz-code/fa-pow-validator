@@ -68,6 +68,7 @@ docker logs pow-wow_server_1 -f
 - **Server** validates the signature and PoW solution statelessly.
 - If valid: server sends a random quote and closes the connection.
 - If invalid: server closes the connection.
+- **Nginx** supported and `/challenge` can be used to offload solution check without touching entire service
 
 ### Security & DDoS Protection
 - **Memory-hard PoW** (Argon2id) is resistant to botnets and ASICs.
@@ -80,11 +81,6 @@ docker logs pow-wow_server_1 -f
 ### Deployment
 - The server Docker image exposes TCP (9000) and HTTP/3 (8443, QUIC+TLS) ports.
 - nginx can be used for HTTP/1.1/2 fallback and rate limiting, but HTTP/3 is served directly by Go for best performance.
-- Example healthcheck:
-  ```sh
-  curl http://localhost/healthz
-  # returns "ok" if healthy
-  ```
 
 ### Argon2id PoW Algorithm
 - **Why Argon2id?**
