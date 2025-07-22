@@ -80,11 +80,6 @@ docker logs pow-wow_server_1 -f
 ### Deployment
 - The server Docker image exposes TCP (9000) and HTTP/3 (8443, QUIC+TLS) ports.
 - nginx can be used for HTTP/1.1/2 fallback and rate limiting, but HTTP/3 is served directly by Go for best performance.
-- Example healthcheck:
-  ```sh
-  curl http://localhost/healthz
-  # returns "ok" if healthy
-  ```
 
 ### Argon2id PoW Algorithm
 - **Why Argon2id?**
