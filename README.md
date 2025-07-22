@@ -68,6 +68,7 @@ docker logs pow-wow_server_1 -f
 - **Server** validates the signature and PoW solution statelessly.
 - If valid: server sends a random quote and closes the connection.
 - If invalid: server closes the connection.
+- **Nginx** supported and `/challenge` can be used to offload solution check without touching entire service
 
 ### Security & DDoS Protection
 - **Memory-hard PoW** (Argon2id) is resistant to botnets and ASICs.
