@@ -40,7 +40,7 @@ docker logs pow-wow_server_1 -f
 |----------------|---------|----------------|--------------------------------------
 | SERVER_ADDR    | string  | 127.0.0.1:9000 | TCP server address
 | FETCH_WORKERS  | int     | 4              | number of concurrent client requests
-| TIMEOUT        | int     | 1000           | timeout after failed request (ms)
+| TIMEOUT        | int     | 10000          | timeout after failed request (ms)
 
 ### Server
 | name             | type    | default        | description

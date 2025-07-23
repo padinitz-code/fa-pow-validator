@@ -28,5 +28,5 @@ services:
     environment:
       - SERVER_ADDR=${SERVER_ADDR:-server:9000}
       - FETCH_WORKERS=${FETCH_WORKERS:-4}
-      - TIMEOUT=${TIMEOUT:-1000}
+      - TIMEOUT=${TIMEOUT:-10000}
     # Add more client env vars if needed

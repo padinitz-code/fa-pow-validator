@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y build-essential gcc musl-dev git
+
+      - name: Make pull
+        run: make pull
+
+      - name: Run tests (race)
+        run: go test -v -race ./...
+
+      - name: Run benchmarks
+        run: go test -bench . -benchmem ./...
+
+      - name: Build all
+        run: make build_all
+
+      # Optionally, upload build artifacts if needed
+      # - name: Upload client artifact
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: client
+      #     path: ./client
+      # - name: Upload server artifact
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: server
+      #     path: ./server 
