@@ -2,9 +2,9 @@
 
 set -euo pipefail
 
-DIFFICULTIES=(1 5 10 15)
+DIFFICULTIES=(10 15 20)
 FETCH_WORKERS=4
-TIMEOUT=1000
+TIMEOUT=10000
 CLIENT_RUNS=5
 
 printf "%-12s %-10s %-10s %-10s %-10s\n" "Difficulty" "AvgTime(s)" "Ops/sec" "MaxRSS(MB)" "CPU(s)"
